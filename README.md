@@ -1,2 +1,3 @@
-# study-java
-Repositório criado para estudar a linguagem java e seus detalhes. 
+# Estudo Java 📖
+
+Repositório criado para estudar a linguagem java e compartilhar conhecimento com qualquer pessoa que tenha interesse no assunto.
