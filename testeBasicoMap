@@ -1,0 +1,47 @@
+package br.com.dirley.testebasicojava;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class TesteMap {
+
+	public static void main(String[] args) {
+		
+		HashMap<String,String> mapEstados = new HashMap<>();
+		mapEstados.put("RJ", "Rio de Janeiro");
+		mapEstados.put("SP", "São Paulo");
+		mapEstados.put("MG", "Minas Gerais");
+		
+		System.out.println(mapEstados);
+		System.out.println(mapEstados.keySet());
+		System.out.println(mapEstados.values());
+		System.out.println(mapEstados.entrySet());
+
+		// lista de chaves
+		for(String estado : mapEstados.keySet()) {
+			System.out.println(estado);
+		}
+
+		// lista de valores
+		for(String estado : mapEstados.values()) {
+			System.out.println(estado);
+		}
+		
+		// lista das entradas chave e valor
+		for(Map.Entry<String, String> estado : mapEstados.entrySet()) {
+			System.out.println(estado);
+		}
+
+		// pegando a chave e valor a partir do conjunto de entradas
+		for(Map.Entry<String, String> estado : mapEstados.entrySet()) {
+			System.out.println(estado.getKey());
+			System.out.println(estado.getValue());
+		}
+
+		// No java 8 podemos iterar usando programação funcional
+		mapEstados.forEach((sigla,estado) -> System.out.println(sigla + " "+estado));
+	}
+
+}
