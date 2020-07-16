@@ -1,0 +1,76 @@
+package br.com.dirley.testebasicojava;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+class Beneficiario {
+	private int id;
+	private String nome;
+	private String plano;
+	private LocalDate dataNascimento;
+	private String codigoBeneficiario;
+	
+	public Beneficiario(int id, String nome, String plano, LocalDate dataNascimento, String codigoBeneficiario){
+		this.id = id;
+		this.nome = nome;
+		this.plano = plano;
+		this.dataNascimento = dataNascimento;
+		this.codigoBeneficiario = codigoBeneficiario;
+	}
+
+	public String getCodigoBeneficiario() {
+		return this.codigoBeneficiario;
+	}
+
+	public String getNome() {
+		return this.nome;
+	}
+}
+
+class BeneficiarioDTO {
+	private String codigoBeneficiario;
+	private String nome;
+	
+	public BeneficiarioDTO(Beneficiario beneficiario) {
+		this.codigoBeneficiario = beneficiario.getCodigoBeneficiario();
+		this.nome = beneficiario.getNome();
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+}
+
+public class TesteBasicoMethodReferences {
+		
+	public static void main(String[] args) {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		List<Beneficiario> beneficiarios = new ArrayList<>();
+		beneficiarios.add(new Beneficiario(1, "DIRLEY", "SUPREMO", LocalDate.parse("24/08/1969", formato), "0001" ));
+		beneficiarios.add(new Beneficiario(2, "RODRIGO", "ESTILO", LocalDate.parse("24/08/1979", formato), "0010" ));
+		beneficiarios.add(new Beneficiario(3, "ROBSON", "PRATA", LocalDate.parse("24/08/1989", formato), "0003" ));
+		beneficiarios.add(new Beneficiario(4, "DIEGO", "CLASSICO", LocalDate.parse("24/08/1989", formato), "0040" ));
+		
+		// Retornar uma lista de BeneficiarioDTO a partir da classe Beneficiario
+		
+		// Usando forma tradicional
+		for (Beneficiario beneficiario : beneficiarios) {
+			BeneficiarioDTO benefDTO = new BeneficiarioDTO(beneficiario);
+			System.out.println(benefDTO.getNome());
+		}
+		
+		// Usando lambda
+		List<BeneficiarioDTO> benefsDTOLambda = beneficiarios.stream().map(b -> new BeneficiarioDTO(b)).collect(Collectors.toList());
+		
+		// Usando method references
+		List<BeneficiarioDTO> benefsDTOMethodReference = beneficiarios.stream().map(BeneficiarioDTO::new).collect(Collectors.toList());
+		
+		benefsDTOLambda.forEach(b -> System.out.println(b.getNome()));
+		benefsDTOMethodReference.forEach(b -> System.out.println(b.getNome()));
+	}
+}
