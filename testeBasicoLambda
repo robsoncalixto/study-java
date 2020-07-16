@@ -1,0 +1,30 @@
+package br.com.dirley.testebasicojava;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TesteLambda {
+	public static void main(String[] args) {
+		List<String> strings = new ArrayList<>();
+		strings.add("Dirley");
+		strings.add("Rodrigo");
+		strings.add("Robson");
+		
+		System.out.println("Forma tradicional de varrer uma lista com for");
+		for (int i = 0; i < strings.size(); i++) {
+			System.out.println(strings.get(i));
+		}
+		
+		System.out.println();
+		
+		System.out.println("Forma reduzida de varrer uma lista com foreach");
+		for (String string : strings) {
+			System.out.println(string);
+		}
+		
+		System.out.println();
+		
+		System.out.println("Forma lambda de varrer uma lista");
+		strings.forEach(s -> System.out.println(s));
+	}
+}
