@@ -12,6 +12,5 @@ public class ThreadExampleWithRunnble {
 		t1.start();
 		t2.start(); // Runnable like lambda
 		// Threads execution aren't at the same time. Because the method "start" create a new thread  
-		
 	}
 }
